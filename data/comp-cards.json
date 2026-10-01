@@ -1,0 +1,6 @@
+[
+  {"name":"Agency","key":"agency","market":"Agency / New Face","cover":"","pdf":"","description":"Clean agency and new-face card.","visible":true,"order":1},
+  {"name":"Fashion","key":"fashion","market":"Fashion / Editorial","cover":"","pdf":"","description":"Editorial and fashion card.","visible":true,"order":2},
+  {"name":"Commercial","key":"commercial","market":"Commercial / Lifestyle","cover":"","pdf":"","description":"Commercial and lifestyle card.","visible":true,"order":3},
+  {"name":"Movement","key":"movement","market":"Athletic / Movement","cover":"","pdf":"","description":"Movement and athletic card.","visible":true,"order":4}
+]
