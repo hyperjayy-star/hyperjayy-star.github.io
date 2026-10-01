@@ -1,0 +1,205 @@
+media:
+  - name: images
+    label: Images
+    input: media/images
+    output: /media/images
+    rename: safe
+    categories: [image]
+  - name: video
+    label: Video
+    input: media/video
+    output: /media/video
+    rename: safe
+    categories: [video]
+  - name: documents
+    label: Documents
+    input: media/docs
+    output: /media/docs
+    rename: safe
+    categories: [document]
+
+content:
+  - name: profile
+    label: Profile & Site
+    type: file
+    path: data/site.json
+    format: json
+    fields:
+      - name: name
+        label: Display name
+        type: string
+        required: true
+      - name: role
+        label: Professional title
+        type: string
+      - name: hero_kicker
+        label: Hero eyebrow
+        type: string
+      - name: hero_subline
+        label: Hero subline
+        type: string
+      - name: intro
+        label: Intro copy
+        type: text
+      - name: contact_email
+        label: Contact email
+        type: string
+        required: true
+      - name: instagram_url
+        label: Instagram URL
+        type: string
+      - name: hero_video
+        label: Hero video
+        type: file
+        options:
+          media: video
+          categories: [video]
+      - name: hero_poster
+        label: Hero poster
+        type: image
+        options:
+          media: images
+      - name: stats
+        label: Measurements
+        type: object
+        fields:
+          - { name: height, label: Height, type: string }
+          - { name: chest, label: Chest, type: string }
+          - { name: waist, label: Waist, type: string }
+          - { name: inseam, label: Inseam, type: string }
+          - { name: shoe, label: Shoe, type: string }
+          - { name: jacket, label: Jacket, type: string }
+
+  - name: portfolio
+    label: Portfolio
+    type: file
+    path: data/portfolio.json
+    format: json
+    list: true
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: short_label, label: Board label, type: string }
+      - name: category
+        label: Category
+        type: select
+        required: true
+        options:
+          values:
+            - Agency / New Face
+            - Fashion / Editorial
+            - Modern / Street
+            - Lifestyle / Commercial
+            - Body / Beauty
+            - Athletic / Movement
+            - Runway
+      - name: image
+        label: Image
+        type: image
+        options: { media: images }
+      - { name: alt, label: Alt text, type: string }
+      - { name: client, label: Shoot / client, type: string }
+      - { name: date, label: Date / credit line, type: string }
+      - { name: featured, label: Featured, type: boolean }
+      - { name: visible, label: Visible, type: boolean }
+      - { name: order, label: Sort order, type: number }
+
+  - name: projects
+    label: Runway & Projects
+    type: file
+    path: data/projects.json
+    format: json
+    list: true
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - name: type
+        label: Project type
+        type: select
+        options: { values: [Runway, Campaign, Editorial, Test Shoot, Other] }
+      - name: hero_image
+        label: Hero image
+        type: image
+        options: { media: images }
+      - name: video
+        label: Video
+        type: file
+        options: { media: video, categories: [video] }
+      - { name: client, label: Client / designer, type: string }
+      - { name: date, label: Date, type: string }
+      - { name: location, label: Location, type: string }
+      - { name: credits, label: Credits, type: text }
+      - { name: description, label: Description, type: text }
+      - { name: featured, label: Featured, type: boolean }
+      - { name: visible, label: Visible, type: boolean }
+      - { name: order, label: Sort order, type: number }
+
+  - name: comp_cards
+    label: Comp Cards
+    type: file
+    path: data/comp-cards.json
+    format: json
+    list: true
+    fields:
+      - { name: name, label: Name, type: string, required: true }
+      - { name: key, label: Internal key, type: string, required: true }
+      - name: market
+        label: Market
+        type: select
+        options:
+          values:
+            - Agency / New Face
+            - Fashion / Editorial
+            - Commercial / Lifestyle
+            - Athletic / Movement
+            - General
+      - name: cover
+        label: Cover image
+        type: image
+        options: { media: images }
+      - name: pdf
+        label: PDF
+        type: file
+        options: { media: documents, extensions: [pdf] }
+      - { name: description, label: Description, type: text }
+      - { name: visible, label: Visible, type: boolean }
+      - { name: order, label: Sort order, type: number }
+
+  - name: links
+    label: Links
+    type: file
+    path: data/links.json
+    format: json
+    list: true
+    fields:
+      - { name: title, label: Label, type: string, required: true }
+      - { name: url, label: URL, type: string, required: true }
+      - name: type
+        label: Type
+        type: select
+        options: { values: [Instagram, Email, Portfolio, Comp Card, Agency, Booking, Other] }
+      - { name: visible, label: Visible, type: boolean }
+      - { name: order, label: Sort order, type: number }
+
+  - name: updates
+    label: Press & Updates
+    type: file
+    path: data/updates.json
+    format: json
+    list: true
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: date, label: Date, type: string }
+      - { name: source, label: Source, type: string }
+      - { name: url, label: URL, type: string }
+      - name: image
+        label: Cover image
+        type: image
+        options: { media: images }
+      - { name: summary, label: Summary, type: text }
+      - { name: visible, label: Visible, type: boolean }
+
+settings:
+  commit:
+    messages:
+      create: "content: add {slug}"
+      update: "content: update {slug}"
+      delete: "content: remove {slug}"
