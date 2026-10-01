@@ -1,0 +1,6 @@
+[
+  {"title":"Portfolio","url":"#work","type":"Portfolio","visible":true,"order":1},
+  {"title":"Comp Cards","url":"#stats","type":"Comp Card","visible":true,"order":2},
+  {"title":"Runway","url":"#runway","type":"Portfolio","visible":true,"order":3},
+  {"title":"Email","url":"mailto:contact@jaidenortiz.com","type":"Email","visible":true,"order":4}
+]
