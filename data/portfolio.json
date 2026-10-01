@@ -1,0 +1,7 @@
+[
+  {"title":"New Face","short_label":"NEW FACE","category":"Agency / New Face","image":"","alt":"","client":"","date":"","featured":true,"visible":true,"order":1},
+  {"title":"Fashion Editorial","short_label":"FASHION","category":"Fashion / Editorial","image":"","alt":"","client":"","date":"","featured":true,"visible":true,"order":2},
+  {"title":"Modern Street","short_label":"MODERN","category":"Modern / Street","image":"","alt":"","client":"","date":"","featured":true,"visible":true,"order":3},
+  {"title":"Lifestyle Commercial","short_label":"LIFESTYLE","category":"Lifestyle / Commercial","image":"","alt":"","client":"","date":"","featured":true,"visible":true,"order":4},
+  {"title":"Athletic Movement","short_label":"MOVEMENT","category":"Athletic / Movement","image":"","alt":"","client":"","date":"","featured":true,"visible":true,"order":5}
+]
