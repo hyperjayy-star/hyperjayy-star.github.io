@@ -1,36 +1,17 @@
-# Jaiden Ortiz — Model Portfolio
+# Jaiden Ortiz — Model
 
-Free static portfolio for **jaidenortiz.com**, hosted on GitHub Pages and structured for Pages CMS.
+One-page landing site for jaidenortiz.com, hosted on the existing free GitHub Pages repository.
 
-## Site
-- Repository: `hyperjayy-star/hyperjayy-star.github.io`
-- Production domain: `jaidenortiz.com`
-- Contact email displayed on site: `contact@jaidenortiz.com`
-- Current height: 5'11"
+The landing page uses Jaiden's supplied black-and-white edit without retouching. The source is 360 × 540 pixels; replace it with a larger export of the same edit when available.
 
 ## Editing
-The site data is split into JSON files so Pages CMS can edit:
-- Profile + measurements
-- Hero poster/video
-- Portfolio images/categories
-- Runway/projects
-- Comp-card covers/PDFs
-- Quick links
-- Press/updates
 
-Sign in to Pages CMS with GitHub and authorize this repository. The included `.pages.yml` defines the admin interface.
+- Profile and hero image: `data/site.json`.
+- Portfolio: `data/portfolio.json`. All current candidates are hidden pending Jaiden's finished edits. Replace an entry's `image` and `alt`, then set `visible: true` to show it in the Portfolio panel. Pages CMS supports these fields through `.pages.yml`.
+- The Portfolio button shows “Selected work coming soon” until at least one image is visible.
+- Run `node scripts/build.mjs` after content changes to refresh the HTML fallback. The browser also loads the JSON, so CMS changes appear without a build.
+- Contact: contact@jaidenortiz.com; Instagram: @jaidenn_n.
 
-## GitHub Pages
-Publish from the `main` branch, repository root. The `CNAME` file is already set to `jaidenortiz.com`.
+## Hosting
 
-## Namecheap DNS
-For the apex domain, point host `@` to GitHub Pages with these A records:
-- 185.199.108.153
-- 185.199.109.153
-- 185.199.110.153
-- 185.199.111.153
-
-For `www`, add a CNAME pointing to:
-- `hyperjayy-star.github.io`
-
-Do not delete MX/SPF/DKIM records used by the email provider for `contact@jaidenortiz.com`.
+Publish from `main`, repository root. Preserve `CNAME`, `.nojekyll`, and existing domain and mail configuration. No paid hosting or service is required.

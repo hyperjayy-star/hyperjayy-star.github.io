@@ -1,19 +1,26 @@
 {
-  "name": "Jaiden Ortiz",
+  "name": "JAIDEN ORTIZ",
   "role": "Model",
-  "hero_kicker": "MODEL / CREATIVE",
-  "hero_subline": "FASHION · EDITORIAL · MOVEMENT",
-  "intro": "A connected visual archive built around range: clean agency work, editorial, modern street, commercial, movement and runway.",
+  "hero_kicker": "MODEL / SELECTED WORK",
+  "hero_subline": "FASHION \u00b7 EDITORIAL \u00b7 RUNWAY",
+  "intro": "A study in presence.",
   "contact_email": "contact@jaidenortiz.com",
-  "instagram_url": "",
+  "instagram_url": "https://www.instagram.com/jaidenn_n/",
+  "hero_poster": "/media/images/jaiden-original-edit.jpg",
+  "hero_sources": [],
+  "hero_alt": "Black-and-white portrait of Jaiden Ortiz in a black jacket",
+  "hero_width": 360,
+  "hero_height": 540,
   "hero_video": "",
-  "hero_poster": "",
   "stats": {
     "height": "5'11\"",
-    "chest": "38\"",
+    "chest": "37\"",
     "waist": "30\"",
     "inseam": "31\"",
-    "shoe": "",
-    "jacket": ""
+    "neck": "15\"",
+    "jacket": "38R",
+    "shoe": "10.5",
+    "hair": "Brown",
+    "eyes": "Dark Brown"
   }
 }
