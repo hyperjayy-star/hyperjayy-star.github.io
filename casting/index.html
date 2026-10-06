@@ -179,6 +179,7 @@ radial-gradient(circle at 50% 38%,#1b1b1b 0,#101010 43%,#080808 74%);touch-actio
   .agent-panel{left:12px;top:calc(108px + env(safe-area-inset-top));width:min(335px,calc(100vw - 24px))}
 }
 </style>
+<script src="/casting/images.js"></script>
 </head>
 <body>
 
@@ -279,6 +280,11 @@ radial-gradient(circle at 50% 38%,#1b1b1b 0,#101010 43%,#080808 74%);touch-actio
 </div>
 
 <script>
+const compCardImgs=[...document.querySelectorAll('.slide img')];
+if(window.__JAIDEN_IMAGES && compCardImgs.length>=3){
+  const hqKeys=['assets/comp-card-front.jpg','assets/comp-card-back.jpg','assets/comp-card-full.jpg'];
+  hqKeys.forEach((key,i)=>{ if(window.__JAIDEN_IMAGES[key]) compCardImgs[i].src=window.__JAIDEN_IMAGES[key]; });
+}
 const intro=document.getElementById('intro');
 const experience=document.getElementById('experience');
 const portfolio=document.getElementById('portfolio');
