@@ -12,19 +12,128 @@
 .hero{position:relative;height:100svh;min-height:680px;overflow:hidden}
 nav{position:absolute;z-index:3;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:24px 4vw;font-size:9px;letter-spacing:.15em}
 .jo{font-family:Caslon,Georgia,serif;font-size:34px;letter-spacing:-.08em}.links{display:flex;gap:24px}
-.photo{position:absolute;inset:0;margin:0}.photo img{width:100%;height:100%;object-fit:cover;object-position:center 19%;filter:brightness(.82)}
+.photo{position:absolute;top:80px;right:4vw;bottom:0;width:60%;margin:0}.photo img{display:block;width:100%;height:100%;object-fit:contain;object-position:center top;filter:brightness(.82)}
 .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0001 30%,#000b 100%)}
 .identity{position:absolute;z-index:2;left:4vw;bottom:7vh}.kicker{font-size:9px;letter-spacing:.2em;margin:0 0 15px;color:#d0c9c0}
 h1{font-family:Caslon,Georgia,serif;font-size:clamp(100px,14vw,220px);font-weight:400;line-height:.75;letter-spacing:-.065em;margin:0}
 h1 span{display:block}h1 span:last-child{margin-left:4vw}.cta{display:inline-block;margin-top:30px;border-bottom:1px solid #ddd5ca;padding-bottom:7px;font-size:9px;letter-spacing:.15em}
-@media(max-width:700px){nav{padding:18px 16px}.links{gap:14px}.links a:nth-child(2){display:none}.identity{left:16px;bottom:6vh}h1{font-size:clamp(92px,24vw,150px)}}
+@media(max-width:700px){.photo{top:80px;right:0;width:100%;bottom:0}nav{padding:18px 16px}.links{gap:14px}.links a:nth-child(2){display:none}.identity{left:16px;bottom:6vh}h1{font-size:clamp(92px,24vw,150px)}}
+#portfolio{display:block;position:relative;min-height:100svh;background:#0d0d0d;padding:calc(24px + env(safe-area-inset-top)) 22px calc(42px + env(safe-area-inset-bottom));overflow:auto}
+#portfolio.unused-open{display:block;animation:portfolioIn .62s cubic-bezier(.16,.84,.22,1) both}
+@keyframes portfolioIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.portfolio-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:28px}
+.portfolio-title{font-family:Georgia,serif;font-size:clamp(62px,9vw,120px);font-weight:400;letter-spacing:-.065em;margin:0;line-height:.82}
+.portfolio-meta{display:flex;align-items:center;gap:18px}
+.portfolio-count{font-size:9px;letter-spacing:.18em;color:#8f8a82}
+.back-card{border:1px solid #444;background:#151515;color:#fff;padding:11px 13px;font-size:9px;letter-spacing:.14em}
+
+/* Balanced portfolio: every tile is the same 2:3 size.
+   Original photos only. Cropping is limited to slight side-trim on wider originals. */
+.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.gallery button{display:block;width:100%;aspect-ratio:2/3;border:0;padding:0;margin:0;background:#111;overflow:hidden;cursor:zoom-in}
+.gallery img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;transition:transform .28s ease,filter .28s ease}
+.gallery button:nth-child(1) img{object-position:53% 50%}
+.gallery button:hover img{transform:scale(1.006);filter:brightness(.95)}
+.portfolio-foot{display:flex;align-items:flex-start;justify-content:space-between;gap:26px;margin-top:38px;padding-top:20px;border-top:1px solid #303030}
+.portfolio-foot-left{font-family:Georgia,serif;font-size:clamp(28px,3vw,44px);line-height:1;letter-spacing:-.035em}
+.portfolio-foot-links{display:flex;flex-direction:column;align-items:flex-end;gap:12px;font-size:9px;letter-spacing:.14em;color:#b9b3aa}
+
+.lightbox{position:fixed;inset:0;z-index:150;background:#050505fb;display:none;align-items:center;justify-content:center;padding:18px;touch-action:none}
+.lightbox.open{display:flex;animation:lbIn .24s ease both}
+@keyframes lbIn{from{opacity:0}to{opacity:1}}
+.lightbox img{max-width:96vw;max-height:92vh;object-fit:contain;user-select:none;-webkit-user-drag:none;animation:photoIn .32s cubic-bezier(.16,.84,.22,1)}
+@keyframes photoIn{from{opacity:.2;transform:scale(.985)}to{opacity:1;transform:none}}
+.lb-close{position:absolute;right:16px;top:calc(14px + env(safe-area-inset-top));border:1px solid #444;background:#101010d9;color:#fff;width:44px;height:44px;font-size:26px}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);border:1px solid #444;background:#111c;color:#fff;width:46px;height:46px;border-radius:50%;font-size:22px}
+.lb-prev{left:16px}.lb-next{right:16px}
+.lb-count{position:absolute;bottom:calc(13px + env(safe-area-inset-bottom));font-size:9px;letter-spacing:.18em;color:#888}
+
+
+html{scroll-behavior:smooth}body{overflow-x:hidden;overflow-y:auto}.home-portfolio{scroll-margin-top:0}.portfolio-title{font-family:Caslon,Georgia,serif}.back-card{display:inline-block}
+@media(max-width:900px){.gallery{gap:8px}}
+@media(max-width:700px){#portfolio{padding-left:10px;padding-right:10px}.portfolio-title{font-size:64px}.portfolio-count{display:none}.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.portfolio-foot{flex-direction:column}.portfolio-foot-links{align-items:flex-start}.lb-prev,.lb-next{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <section class="hero">
 <nav><a class="jo" href="/">JO</a><div class="links"><a href="/casting/">CASTING</a><a href="/about/">ABOUT</a><a href="mailto:contact@jaidenortiz.com">CONTACT ↗</a></div></nav>
 <figure class="photo"><img src="/media/images/jaiden-original-edit.jpg" alt="Jaiden Ortiz"></figure>
-<div class="identity"><p class="kicker">JAIDEN ORTIZ / MODEL</p><h1><span>Jaiden</span><span>Ortiz.</span></h1><a class="cta" href="/casting/#portfolio">VIEW WORK →</a></div>
+<div class="identity"><p class="kicker">JAIDEN ORTIZ / MODEL</p><h1><span>Jaiden</span><span>Ortiz.</span></h1><a class="cta" href="#portfolio">VIEW WORK →</a></div>
 </section>
+<section id="portfolio" class="home-portfolio">
+  <div class="portfolio-head">
+    <h2 class="portfolio-title">Portfolio.</h2>
+    <div class="portfolio-meta">
+      <span class="portfolio-count">12 SELECTS</span>
+      <a class="back-card" href="/casting/">COMP CARD ↗</a>
+    </div>
+  </div>
+
+  <div class="gallery">
+    <button data-gallery-index="0" aria-label="Open portfolio image 1"><img loading="lazy" src="/casting/assets/portfolio-01.jpg" alt="Jaiden Ortiz portfolio image 1"></button><button data-gallery-index="1" aria-label="Open portfolio image 2"><img loading="lazy" src="/casting/assets/portfolio-08.jpg" alt="Jaiden Ortiz portfolio image 2"></button><button data-gallery-index="2" aria-label="Open portfolio image 3"><img loading="lazy" src="/casting/assets/portfolio-09.jpg" alt="Jaiden Ortiz portfolio image 3"></button><button data-gallery-index="3" aria-label="Open portfolio image 4"><img loading="lazy" src="/casting/assets/portfolio-13.jpg" alt="Jaiden Ortiz portfolio image 4"></button><button data-gallery-index="4" aria-label="Open portfolio image 5"><img loading="lazy" src="/casting/assets/portfolio-03.jpg" alt="Jaiden Ortiz portfolio image 5"></button><button data-gallery-index="5" aria-label="Open portfolio image 6"><img loading="lazy" src="/casting/assets/portfolio-04.jpg" alt="Jaiden Ortiz portfolio image 6"></button><button data-gallery-index="6" aria-label="Open portfolio image 7"><img loading="lazy" src="/casting/assets/portfolio-12.jpg" alt="Jaiden Ortiz portfolio image 7"></button><button data-gallery-index="7" aria-label="Open portfolio image 8"><img loading="lazy" src="/casting/assets/portfolio-11.jpg" alt="Jaiden Ortiz portfolio image 8"></button><button data-gallery-index="8" aria-label="Open portfolio image 9"><img loading="lazy" src="/casting/assets/portfolio-02.jpg" alt="Jaiden Ortiz portfolio image 9"></button><button data-gallery-index="9" aria-label="Open portfolio image 10"><img loading="lazy" src="/casting/assets/portfolio-05.jpg" alt="Jaiden Ortiz portfolio image 10"></button><button data-gallery-index="10" aria-label="Open portfolio image 11"><img loading="lazy" src="/casting/assets/portfolio-07.jpg" alt="Jaiden Ortiz portfolio image 11"></button><button data-gallery-index="11" aria-label="Open portfolio image 12"><img loading="lazy" src="/casting/assets/portfolio-06.jpg" alt="Jaiden Ortiz portfolio image 12"></button>
+  </div>
+  <div class="portfolio-foot">
+    <div class="portfolio-foot-left">Selected work.</div>
+    <div class="portfolio-foot-links">
+      <a href="/about/#mickey">MOTHER AGENT / MICKEY FREEMAN ↗</a>
+      <a href="mailto:contact@jaidenortiz.com">BOOKINGS / INQUIRIES ↗</a>
+      <a href="https://www.instagram.com/jaidenn_n/" target="_blank" rel="noopener">@JAIDENN_N ↗</a>
+    </div>
+  </div>
+</section>
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" aria-label="Close image">×</button>
+  <button class="lb-prev" aria-label="Previous image">‹</button>
+  <img id="lbImg" alt="Jaiden Ortiz portfolio image">
+  <button class="lb-next" aria-label="Next image">›</button>
+  <div class="lb-count" id="lbCount"></div>
+</div>
+<script>
+const galleryFiles=[...document.querySelectorAll('[data-gallery-index] img')].map(i=>i.src);
+const lightbox=document.getElementById('lightbox');
+const lbImg=document.getElementById('lbImg');
+const lbCount=document.getElementById('lbCount');
+let gi=0,lsx=0,lsy=0;
+
+function preloadAround(){
+  [-1,1].forEach(d=>{const im=new Image();im.src=galleryFiles[(gi+d+galleryFiles.length)%galleryFiles.length];});
+}
+function showGallery(i){
+  gi=(i+galleryFiles.length)%galleryFiles.length;
+  lbImg.src=galleryFiles[gi];
+  lbCount.textContent=`${gi+1} / ${galleryFiles.length}`;
+  preloadAround();
+}
+function openGallery(i){
+  showGallery(i);
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+function closeGallery(){
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden','true');
+  document.body.style.overflow='auto';
+}
+document.querySelectorAll('[data-gallery-index]').forEach(b=>b.addEventListener('click',()=>openGallery(Number(b.dataset.galleryIndex))));
+document.querySelector('.lb-close').addEventListener('click',closeGallery);
+document.querySelector('.lb-prev').addEventListener('click',()=>showGallery(gi-1));
+document.querySelector('.lb-next').addEventListener('click',()=>showGallery(gi+1));
+lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeGallery();});
+lightbox.addEventListener('pointerdown',e=>{lsx=e.clientX;lsy=e.clientY;},{passive:true});
+lightbox.addEventListener('pointerup',e=>{
+  if(e.target.closest('button')) return;
+  const dx=e.clientX-lsx,dy=e.clientY-lsy;
+  if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy))showGallery(gi+(dx<0?1:-1));
+},{passive:true});
+document.addEventListener('keydown',e=>{
+  if(!lightbox.classList.contains('open'))return;
+  if(e.key==='Escape')closeGallery();
+  if(e.key==='ArrowLeft')showGallery(gi-1);
+  if(e.key==='ArrowRight')showGallery(gi+1);
+});
+
+</script>
 </body>
 </html>
