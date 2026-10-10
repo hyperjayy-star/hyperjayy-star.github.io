@@ -55,3 +55,10 @@ The new slideshow has no blur, brightness filter, zoom, or cover cropping; it us
   also rejected local-file navigation. No browser screenshots were generated.
 
 This is an implementation for review, not a visually verified release.
+
+## Hair-edge refinement
+
+The hair perimeter now uses a higher-resolution portrait segmentation mask to
+remove the gray fringe and stair-step edges. Only hair transparency changed;
+all RGB pixels, face transparency, and the mask below the hair are identical to
+the first preview. Layout, slideshow, and all other files are unchanged.
