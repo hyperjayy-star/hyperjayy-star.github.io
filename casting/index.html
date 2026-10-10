@@ -181,6 +181,11 @@ radial-gradient(circle at 50% 38%,#1b1b1b 0,#101010 43%,#080808 74%);touch-actio
   .agent-panel{left:12px;top:calc(108px + env(safe-area-inset-top));width:min(335px,calc(100vw - 24px))}
 }
 
+
+/* Persistent portfolio view CTA appears only when the portfolio section is open. */
+.portfolio-contact-floating{display:none;position:fixed;z-index:120;right:clamp(12px,3vw,26px);bottom:calc(18px + env(safe-area-inset-bottom));border:1px solid #eee9df;background:#eee9df;color:#141414;padding:13px 16px;font-size:10px;letter-spacing:.15em;cursor:pointer}
+.portfolio-view .portfolio-contact-floating{display:block}
+.portfolio-contact-floating:focus-visible{outline:2px solid #fff;outline-offset:3px}
 /* Quick contact stays usable across every comp-card slide and portfolio view. */
 .topbar-actions{display:flex;align-items:center;justify-content:flex-end;gap:clamp(6px,1vw,14px)}
 .contact-trigger,.portfolio-contact{pointer-events:auto;border:1px solid rgba(244,241,234,.6);background:rgba(14,14,14,.8);color:#f4f1ea;padding:11px 13px;font:inherit;font-size:9px;letter-spacing:.15em;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background .2s,border-color .2s}
@@ -226,6 +231,7 @@ radial-gradient(circle at 50% 38%,#1b1b1b 0,#101010 43%,#080808 74%);touch-actio
   </div>
 </div>
 
+<button type="button" class="portfolio-contact-floating" data-contact-open aria-controls="contactSheet" aria-expanded="false">CONTACT ↗</button>
 <!-- The contact panel sits outside the swipe deck so links can always be tapped. -->
 <div class="contact-sheet" id="contactSheet" role="dialog" aria-label="Contact Jaiden Ortiz" aria-hidden="true">
   <div class="contact-sheet-head">
@@ -420,6 +426,7 @@ function showSlide(next){
 
 function openPortfolio(){
   setContactOpen(false);
+  document.body.classList.add('portfolio-view');
   clearTimeout(promptTimer);
   experience.style.display='none';
   portfolio.classList.add('open');
@@ -428,6 +435,7 @@ function openPortfolio(){
 }
 function backToCard(){
   setContactOpen(false);
+  document.body.classList.remove('portfolio-view');
   portfolio.classList.remove('open');
   experience.style.display='block';
   document.body.style.overflow='hidden';
