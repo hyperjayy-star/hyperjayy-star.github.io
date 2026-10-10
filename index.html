@@ -12,8 +12,8 @@
 .hero{position:relative;height:100svh;min-height:680px;overflow:hidden}
 nav{position:absolute;z-index:3;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:24px 4vw;font-size:9px;letter-spacing:.15em}
 .jo{font-family:Caslon,Georgia,serif;font-size:34px;letter-spacing:-.08em}.links{display:flex;gap:24px}
-.photo{position:absolute;top:80px;right:4vw;bottom:0;width:60%;margin:0}.photo img{display:block;width:100%;height:100%;object-fit:contain;object-position:center top;filter:brightness(.82)}
-.photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0001 30%,#000b 100%)}
+.photo{position:absolute;top:80px;right:4vw;bottom:0;width:60%;margin:0}.photo img{display:block;width:100%;height:100%;object-fit:contain;object-position:center top;-webkit-mask-image:url('/media/images/jaiden-denim-mask-v1.png');mask-image:url('/media/images/jaiden-denim-mask-v1.png');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-position:center top;mask-position:center top;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;mask-mode:alpha}
+.photo:after{display:none}
 .identity{position:absolute;z-index:2;left:4vw;bottom:7vh}.kicker{font-size:9px;letter-spacing:.2em;margin:0 0 15px;color:#d0c9c0}
 h1{font-family:Caslon,Georgia,serif;font-size:clamp(100px,14vw,220px);font-weight:400;line-height:.75;letter-spacing:-.065em;margin:0}
 h1 span{display:block}h1 span:last-child{margin-left:4vw}.cta{display:inline-block;margin-top:30px;border-bottom:1px solid #ddd5ca;padding-bottom:7px;font-size:9px;letter-spacing:.15em}
@@ -58,7 +58,7 @@ html{scroll-behavior:smooth}body{overflow-x:hidden;overflow-y:auto}.home-portfol
 <body>
 <section class="hero">
 <nav><a class="jo" href="/">JO</a><div class="links"><a href="/casting/">CASTING</a><a href="/about/">ABOUT</a><a href="mailto:contact@jaidenortiz.com">CONTACT ↗</a></div></nav>
-<figure class="photo"><img src="/media/images/jaiden-original-edit.jpg" alt="Jaiden Ortiz"></figure>
+<figure class="photo"><img src="/casting/assets/portfolio-09.jpg" alt="Jaiden Ortiz in black denim"></figure>
 <div class="identity"><p class="kicker">JAIDEN ORTIZ / MODEL</p><h1><span>Jaiden</span><span>Ortiz.</span></h1><a class="cta" href="#portfolio">VIEW WORK →</a></div>
 </section>
 <section id="portfolio" class="home-portfolio">
