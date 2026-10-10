@@ -224,9 +224,12 @@ radial-gradient(circle at 50% 38%,#1b1b1b 0,#101010 43%,#080808 74%);touch-actio
 body.nfc-playing .intro-skip{display:inline-block}
 .nfc-skip{position:absolute;z-index:34;right:22px;bottom:calc(53px + env(safe-area-inset-bottom));min-height:44px;border:1px solid #ffffff6e;background:#151515eb;color:#f4f1ea;padding:12px 16px;font-size:9px;letter-spacing:.16em;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility .25s}
 body.nfc-playing .nfc-skip{opacity:1;visibility:visible;pointer-events:auto}
-body.nfc-playing .slide{transition-duration:.54s,.40s,.40s}
-body.nfc-playing .slide.active .card-shell{animation:nfcCardArrive .54s cubic-bezier(.16,.84,.22,1) both}
-@keyframes nfcCardArrive{from{transform:translateY(15px) scale(.985)}to{transform:translateY(0) scale(1)}}
+/* A restrained editorial glide: less travel, barely any tilt, slower ease. */
+body.nfc-playing .slide{transition:transform .69s cubic-bezier(.22,.61,.36,1),opacity .64s ease-in-out,filter .64s ease-in-out}
+body.nfc-playing .slide:not(.active):not(.before){transform:translate3d(8%,0,0) rotateY(-1.5deg) scale(.99);filter:blur(.7px)}
+body.nfc-playing .slide.before{transform:translate3d(-8%,0,0) rotateY(1.5deg) scale(.99);filter:blur(.7px)}
+body.nfc-playing .slide.active .card-shell{animation:nfcCardArrive .66s cubic-bezier(.22,.61,.36,1) both}
+@keyframes nfcCardArrive{from{transform:translateY(8px) scale(.994)}to{transform:translateY(0) scale(1)}}
 body.nfc-playing .instruction{color:#d8d0c5}
 @media(max-width:700px){.nfc-skip{right:14px;bottom:calc(51px + env(safe-area-inset-bottom));font-size:8px;padding:12px}}
 @media(prefers-reduced-motion:reduce){body.nfc-playing .slide.active .card-shell{animation:none!important}}
