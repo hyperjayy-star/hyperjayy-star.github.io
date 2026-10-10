@@ -395,7 +395,7 @@ const params=new URLSearchParams(location.search);
 const nfcEntry=params.get('entry')==='tap';
 const directFullEntry=location.hash==='#full';
 let index=0, promptTimer=null, introTimer=null;
-let revealPlaying=false, revealTimers=[];
+let revealPlaying=false, revealTimers=[], revealGeneration=0;
 
 function hideIntro(){
   clearTimeout(introTimer);
@@ -427,6 +427,7 @@ function skipNfcReveal(){
 function startNfcReveal(){
   stopRevealClock();
   clearTimeout(introTimer);
+  const generation=++revealGeneration;
   revealPlaying=true;
   document.body.classList.add('nfc-playing');
   intro.classList.remove('done');
@@ -436,10 +437,23 @@ function startNfcReveal(){
     skipNfcReveal();
     return;
   }
-  queueReveal(hideIntro,540);
-  queueReveal(()=>showSlide(1),1120);
-  queueReveal(()=>showSlide(2),1760);
-  queueReveal(finishNfcReveal,2330);
+  // Preload original cards before the reveal to avoid blank frames on slower phones.
+  // The timeout prevents a broken network image from trapping visitors on the intro.
+  const imagesReady=Promise.all(compCardImgs.map(img=>{
+    if(img.complete && img.naturalWidth>0)return Promise.resolve();
+    if(typeof img.decode==='function')return img.decode().catch(()=>{});
+    return new Promise(resolve=>{
+      img.addEventListener('load',resolve,{once:true});
+      img.addEventListener('error',resolve,{once:true});
+    });
+  }));
+  Promise.race([imagesReady,new Promise(resolve=>setTimeout(resolve,1200))]).then(()=>{
+    if(!revealPlaying || revealGeneration!==generation)return;
+    queueReveal(hideIntro,540);
+    queueReveal(()=>showSlide(1),1120);
+    queueReveal(()=>showSlide(2),1760);
+    queueReveal(finishNfcReveal,2330);
+  });
 }
 // The intro itself, its skip button, and the in-page skip affordance are tappable.
 intro.addEventListener('click',()=>{
@@ -447,6 +461,7 @@ intro.addEventListener('click',()=>{
   else hideIntro();
 });
 document.getElementById('nfcSkip').addEventListener('click',skipNfcReveal);
+document.addEventListener('visibilitychange',()=>{if(document.hidden)skipNfcReveal();});
 experience.addEventListener('click',e=>{
   if(!revealPlaying)return;
   skipNfcReveal();
