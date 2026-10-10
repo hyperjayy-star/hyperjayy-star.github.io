@@ -449,10 +449,10 @@ function startNfcReveal(){
   }));
   Promise.race([imagesReady,new Promise(resolve=>setTimeout(resolve,1200))]).then(()=>{
     if(!revealPlaying || revealGeneration!==generation)return;
-    queueReveal(hideIntro,540);
-    queueReveal(()=>showSlide(1),1120);
-    queueReveal(()=>showSlide(2),1760);
-    queueReveal(finishNfcReveal,2330);
+    queueReveal(hideIntro,650);
+    queueReveal(()=>showSlide(1),1320);
+    queueReveal(()=>showSlide(2),2110);
+    queueReveal(finishNfcReveal,2830);
   });
 }
 // The intro itself, its skip button, and the in-page skip affordance are tappable.
