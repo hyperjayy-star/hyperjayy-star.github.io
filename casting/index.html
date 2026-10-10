@@ -218,6 +218,18 @@ radial-gradient(circle at 50% 38%,#1b1b1b 0,#101010 43%,#080808 74%);touch-actio
   .contact-list a{min-height:54px}
 }
 
+
+/* NFC-only cinematic reveal. No comp-card image pixels are modified. */
+.intro-skip{display:none;margin:32px auto 0;min-height:44px;border:1px solid #e8e0d17a;background:#101010;color:#eee9df;padding:12px 20px;font-size:9px;letter-spacing:.2em;cursor:pointer}
+body.nfc-playing .intro-skip{display:inline-block}
+.nfc-skip{position:absolute;z-index:34;right:22px;bottom:calc(53px + env(safe-area-inset-bottom));min-height:44px;border:1px solid #ffffff6e;background:#151515eb;color:#f4f1ea;padding:12px 16px;font-size:9px;letter-spacing:.16em;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility .25s}
+body.nfc-playing .nfc-skip{opacity:1;visibility:visible;pointer-events:auto}
+body.nfc-playing .slide{transition-duration:.54s,.40s,.40s}
+body.nfc-playing .slide.active .card-shell{animation:nfcCardArrive .54s cubic-bezier(.16,.84,.22,1) both}
+@keyframes nfcCardArrive{from{transform:translateY(15px) scale(.985)}to{transform:translateY(0) scale(1)}}
+body.nfc-playing .instruction{color:#d8d0c5}
+@media(max-width:700px){.nfc-skip{right:14px;bottom:calc(51px + env(safe-area-inset-bottom));font-size:8px;padding:12px}}
+@media(prefers-reduced-motion:reduce){body.nfc-playing .slide.active .card-shell{animation:none!important}}
 </style>
 <script src="/casting/images.js"></script>
 <!-- Original-resolution back/full comp cards; NYFW runway centered -->
@@ -228,6 +240,7 @@ radial-gradient(circle at 50% 38%,#1b1b1b 0,#101010 43%,#080808 74%);touch-actio
   <div class="intro-inner">
     <h1 class="intro-name">Jaiden<br>Ortiz.</h1>
     <div class="intro-sub">MODEL · CASTING EDITION</div>
+    <button type="button" class="intro-skip" id="introSkip">SKIP INTRO →</button>
   </div>
 </div>
 
@@ -253,6 +266,7 @@ radial-gradient(circle at 50% 38%,#1b1b1b 0,#101010 43%,#080808 74%);touch-actio
       <div class="mode">COMP CARD / CASTING</div>
       <div class="topbar-actions"><button type="button" class="contact-trigger" data-contact-open aria-controls="contactSheet" aria-expanded="false">CONTACT ↗</button><button id="replayCard" class="replay-card" aria-label="Replay comp card">PLAY COMP CARD</button><button id="cornerPortfolio" class="corner-portfolio">PORTFOLIO ↗</button></div>
     </div>
+    <button type="button" id="nfcSkip" class="nfc-skip" aria-label="Skip animation to full comp card">SKIP INTRO →</button>
     <div class="edge-hint left">‹</div>
     <div class="edge-hint right">›</div>
     <div class="bottom-meta"><span id="counter">01 / 03</span><span id="instruction">SWIPE OR TAP TO CONTINUE</span></div>
@@ -378,16 +392,94 @@ document.addEventListener('keydown',e=>{
 });
 
 const params=new URLSearchParams(location.search);
-const nfcEntry=params.get('entry')==='tap' || location.hash==='#full';
+const nfcEntry=params.get('entry')==='tap';
+const directFullEntry=location.hash==='#full';
 let index=0, promptTimer=null, introTimer=null;
+let revealPlaying=false, revealTimers=[], revealGeneration=0;
 
 function hideIntro(){
   clearTimeout(introTimer);
   intro.classList.add('done');
 }
-intro.addEventListener('click',hideIntro);
-if(nfcEntry){ intro.classList.add('done'); }
-else { introTimer=setTimeout(hideIntro,1050); }
+function stopRevealClock(){
+  revealTimers.forEach(clearTimeout);
+  revealTimers=[];
+}
+function queueReveal(callback,delay){
+  revealTimers.push(setTimeout(()=>{if(revealPlaying)callback();},delay));
+}
+function finishNfcReveal(){
+  if(!revealPlaying)return;
+  stopRevealClock();
+  revealPlaying=false;
+  document.body.classList.remove('nfc-playing');
+  hideIntro();
+  if(index!==2)showSlide(2);
+}
+function skipNfcReveal(){
+  if(!revealPlaying)return;
+  stopRevealClock();
+  revealPlaying=false;
+  document.body.classList.remove('nfc-playing');
+  hideIntro();
+  showSlide(2);
+}
+function startNfcReveal(){
+  stopRevealClock();
+  clearTimeout(introTimer);
+  const generation=++revealGeneration;
+  revealPlaying=true;
+  document.body.classList.add('nfc-playing');
+  intro.classList.remove('done');
+  showSlide(0);
+  // Motion-sensitive visitors reach the complete card without a forced animation.
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    skipNfcReveal();
+    return;
+  }
+  // Preload original cards before the reveal to avoid blank frames on slower phones.
+  // The timeout prevents a broken network image from trapping visitors on the intro.
+  const imagesReady=Promise.all(compCardImgs.map(img=>{
+    if(img.complete && img.naturalWidth>0)return Promise.resolve();
+    if(typeof img.decode==='function')return img.decode().catch(()=>{});
+    return new Promise(resolve=>{
+      img.addEventListener('load',resolve,{once:true});
+      img.addEventListener('error',resolve,{once:true});
+    });
+  }));
+  Promise.race([imagesReady,new Promise(resolve=>setTimeout(resolve,1200))]).then(()=>{
+    if(!revealPlaying || revealGeneration!==generation)return;
+    queueReveal(hideIntro,540);
+    queueReveal(()=>showSlide(1),1120);
+    queueReveal(()=>showSlide(2),1760);
+    queueReveal(finishNfcReveal,2330);
+  });
+}
+// The intro itself, its skip button, and the in-page skip affordance are tappable.
+intro.addEventListener('click',()=>{
+  if(revealPlaying)skipNfcReveal();
+  else hideIntro();
+});
+document.getElementById('nfcSkip').addEventListener('click',skipNfcReveal);
+document.addEventListener('visibilitychange',()=>{if(document.hidden)skipNfcReveal();});
+experience.addEventListener('click',e=>{
+  if(!revealPlaying)return;
+  skipNfcReveal();
+  // Keep direct Contact/Portfolio actions working; other taps just finish the reveal.
+  if(!e.target.closest('[data-contact-open],#cornerPortfolio')){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }
+},true);
+document.addEventListener('keydown',e=>{
+  if(!revealPlaying)return;
+  if(['Escape','Enter',' ','ArrowLeft','ArrowRight'].includes(e.key)){
+    skipNfcReveal();
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }
+},true);
+if(!nfcEntry){introTimer=setTimeout(hideIntro,1050);}
 
 function showSlide(next){
   setContactOpen(false);
@@ -446,8 +538,11 @@ document.getElementById('portfolioCta').addEventListener('click',openPortfolio);
 cornerPortfolio.addEventListener('click',openPortfolio);
 document.getElementById('backCard').addEventListener('click',backToCard);
 replayCard.addEventListener('click',()=>{
-  history.replaceState(null,'',location.pathname);
-  showSlide(0);
+  if(nfcEntry)startNfcReveal();
+  else {
+    history.replaceState(null,'',location.pathname);
+    showSlide(0);
+  }
 });
 document.getElementById('tapPrev').addEventListener('click',()=>showSlide(index-1));
 document.getElementById('tapNext').addEventListener('click',()=>showSlide(index+1));
@@ -529,7 +624,8 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight')showGallery(gi+1);
 });
 if(location.hash==='#portfolio'){ intro.classList.add('done'); openPortfolio(); }
-else if(nfcEntry){ showSlide(2); }
+else if(nfcEntry){ startNfcReveal(); }
+else if(directFullEntry){ intro.classList.add('done'); showSlide(2); }
 else { showSlide(0); }
 </script>
 </body>
