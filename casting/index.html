@@ -183,7 +183,7 @@ radial-gradient(circle at 50% 38%,#1b1b1b 0,#101010 43%,#080808 74%);touch-actio
 
 
 /* Persistent portfolio view CTA appears only when the portfolio section is open. */
-.portfolio-contact-floating{display:none;position:fixed;z-index:120;right:clamp(12px,3vw,26px);bottom:calc(18px + env(safe-area-inset-bottom));border:1px solid #eee9df;background:#eee9df;color:#141414;padding:13px 16px;font-size:10px;letter-spacing:.15em;cursor:pointer}
+.portfolio-contact-floating{display:none;position:fixed;z-index:200;right:clamp(12px,3vw,26px);bottom:calc(18px + env(safe-area-inset-bottom));border:1px solid #eee9df;background:#eee9df;color:#141414;padding:13px 16px;font-size:10px;letter-spacing:.15em;cursor:pointer}
 .portfolio-view .portfolio-contact-floating{display:block}
 .portfolio-contact-floating:focus-visible{outline:2px solid #fff;outline-offset:3px}
 /* Quick contact stays usable across every comp-card slide and portfolio view. */
@@ -191,7 +191,7 @@ radial-gradient(circle at 50% 38%,#1b1b1b 0,#101010 43%,#080808 74%);touch-actio
 .contact-trigger,.portfolio-contact{pointer-events:auto;border:1px solid rgba(244,241,234,.6);background:rgba(14,14,14,.8);color:#f4f1ea;padding:11px 13px;font:inherit;font-size:9px;letter-spacing:.15em;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background .2s,border-color .2s}
 .contact-trigger:hover,.portfolio-contact:hover,.contact-trigger[aria-expanded="true"]{background:#eee9df;color:#111;border-color:#eee9df}
 .contact-trigger:focus-visible,.portfolio-contact:focus-visible,.contact-sheet button:focus-visible,.contact-sheet a:focus-visible{outline:2px solid #f4f1ea;outline-offset:3px}
-.contact-sheet{position:fixed;z-index:140;top:calc(73px + env(safe-area-inset-top));right:22px;width:min(375px,calc(100vw - 28px));max-height:calc(100svh - 92px - env(safe-area-inset-top));overflow-y:auto;display:none;padding:19px;background:#151515f7;color:#f4f1ea;border:1px solid #ffffff45;box-shadow:0 22px 80px #0008;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.contact-sheet{position:fixed;z-index:210;top:calc(73px + env(safe-area-inset-top));right:22px;width:min(375px,calc(100vw - 28px));max-height:calc(100svh - 92px - env(safe-area-inset-top));overflow-y:auto;display:none;padding:19px;background:#151515f7;color:#f4f1ea;border:1px solid #ffffff45;box-shadow:0 22px 80px #0008;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
 .contact-sheet.open{display:block;animation:contactIn .2s ease both}
 @keyframes contactIn{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
 .contact-sheet-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
