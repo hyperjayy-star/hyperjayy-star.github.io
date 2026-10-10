@@ -53,11 +53,17 @@ html{scroll-behavior:smooth}body{overflow-x:hidden;overflow-y:auto}.home-portfol
 @media(max-width:900px){.gallery{gap:8px}}
 @media(max-width:700px){#portfolio{padding-left:10px;padding-right:10px}.portfolio-title{font-size:64px}.portfolio-count{display:none}.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.portfolio-foot{flex-direction:column}.portfolio-foot-links{align-items:flex-start}.lb-prev,.lb-next{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+
+.quick-contact{position:fixed;z-index:120;right:clamp(12px,3vw,26px);bottom:calc(16px + env(safe-area-inset-bottom));display:inline-block;background:#efeae0;color:#141414;border:1px solid #efeae0;padding:13px 16px;font-size:10px;letter-spacing:.16em;box-shadow:0 8px 28px #0005}
+.quick-contact:hover{background:#fff}
+.quick-contact:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media(max-width:700px){.quick-contact{padding:12px 14px;font-size:9px}}
 </style>
 </head>
 <body>
+<a class="quick-contact" href="/contact/" aria-label="Open contact options: phone, email, Instagram">CONTACT ↗</a>
 <section class="hero">
-<nav><a class="jo" href="/">JO</a><div class="links"><a href="/casting/">CASTING</a><a href="/about/">ABOUT</a><a href="mailto:contact@jaidenortiz.com">CONTACT ↗</a></div></nav>
+<nav><a class="jo" href="/">JO</a><div class="links"><a href="/casting/">CASTING</a><a href="/about/">ABOUT</a><a href="/contact/">CONTACT ↗</a></div></nav>
 <figure class="photo"><img src="/media/images/jaiden-original-edit.jpg" alt="Jaiden Ortiz"></figure>
 <div class="identity"><p class="kicker">JAIDEN ORTIZ / MODEL</p><h1><span>Jaiden</span><span>Ortiz.</span></h1><a class="cta" href="#portfolio">VIEW WORK →</a></div>
 </section>
@@ -77,7 +83,8 @@ html{scroll-behavior:smooth}body{overflow-x:hidden;overflow-y:auto}.home-portfol
     <div class="portfolio-foot-left">Selected work.</div>
     <div class="portfolio-foot-links">
       <a href="/about/#mickey">MOTHER AGENT / MICKEY FREEMAN ↗</a>
-      <a href="mailto:contact@jaidenortiz.com">BOOKINGS / INQUIRIES ↗</a>
+      <a href="mailto:contact@jaidenortiz.com">EMAIL / BOOKINGS ↗</a>
+      <a href="tel:+17186077079">PHONE / (718) 607-7079 ↗</a>
       <a href="https://www.instagram.com/jaidenn_n/" target="_blank" rel="noopener">@JAIDENN_N ↗</a>
     </div>
   </div>
