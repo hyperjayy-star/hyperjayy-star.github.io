@@ -180,6 +180,39 @@ radial-gradient(circle at 50% 38%,#1b1b1b 0,#101010 43%,#080808 74%);touch-actio
   .agent-name{font-size:13px}
   .agent-panel{left:12px;top:calc(108px + env(safe-area-inset-top));width:min(335px,calc(100vw - 24px))}
 }
+
+/* Quick contact stays usable across every comp-card slide and portfolio view. */
+.topbar-actions{display:flex;align-items:center;justify-content:flex-end;gap:clamp(6px,1vw,14px)}
+.contact-trigger,.portfolio-contact{pointer-events:auto;border:1px solid rgba(244,241,234,.6);background:rgba(14,14,14,.8);color:#f4f1ea;padding:11px 13px;font:inherit;font-size:9px;letter-spacing:.15em;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background .2s,border-color .2s}
+.contact-trigger:hover,.portfolio-contact:hover,.contact-trigger[aria-expanded="true"]{background:#eee9df;color:#111;border-color:#eee9df}
+.contact-trigger:focus-visible,.portfolio-contact:focus-visible,.contact-sheet button:focus-visible,.contact-sheet a:focus-visible{outline:2px solid #f4f1ea;outline-offset:3px}
+.contact-sheet{position:fixed;z-index:140;top:calc(73px + env(safe-area-inset-top));right:22px;width:min(375px,calc(100vw - 28px));max-height:calc(100svh - 92px - env(safe-area-inset-top));overflow-y:auto;display:none;padding:19px;background:#151515f7;color:#f4f1ea;border:1px solid #ffffff45;box-shadow:0 22px 80px #0008;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.contact-sheet.open{display:block;animation:contactIn .2s ease both}
+@keyframes contactIn{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
+.contact-sheet-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.contact-kicker{font-size:9px;letter-spacing:.24em;color:#aaa49b;margin:0 0 8px}
+.contact-sheet h2{font-family:Georgia,serif;font-size:clamp(27px,4vw,39px);font-weight:400;line-height:1;letter-spacing:-.04em;margin:0}
+.contact-close{border:1px solid #ffffff50;background:transparent;color:#fff;width:38px;height:38px;flex:none;cursor:pointer;font-size:22px}
+.contact-description{font-size:12px;line-height:1.5;color:#bcb6ae;margin:15px 0 17px}
+.contact-list{display:flex;flex-direction:column;gap:8px}
+.contact-list a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:58px;padding:11px 13px;border:1px solid #ffffff30;text-decoration:none;color:#f4f1ea}
+.contact-list a:hover{background:#272727;border-color:#ffffff8b}
+.contact-list strong{display:block;font-size:9px;font-weight:400;letter-spacing:.17em;color:#a8a39b;margin-bottom:6px}
+.contact-list span.value{font-size:clamp(11px,2.5vw,14px);letter-spacing:.015em;overflow-wrap:anywhere}
+.contact-link-arrow{font-size:22px;flex:none}
+.contact-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:15px;font-size:9px;letter-spacing:.12em;color:#aba59d}
+.contact-footer a{color:#eee8df;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:700px){
+  .topbar-actions{gap:7px}
+  .contact-trigger{font-size:8px;padding:10px}
+  .replay-card.show{font-size:0}
+  .replay-card.show:after{content:"↺";font-size:20px}
+  .corner-portfolio{font-size:8px;padding:10px 9px}
+  .contact-sheet{top:calc(65px + env(safe-area-inset-top));right:12px;max-height:calc(100svh - 80px - env(safe-area-inset-top))}
+  .contact-description{margin:13px 0}
+  .contact-list a{min-height:54px}
+}
+
 </style>
 <script src="/casting/images.js"></script>
 <!-- Original-resolution back/full comp cards; NYFW runway centered -->
@@ -193,12 +226,26 @@ radial-gradient(circle at 50% 38%,#1b1b1b 0,#101010 43%,#080808 74%);touch-actio
   </div>
 </div>
 
+<!-- The contact panel sits outside the swipe deck so links can always be tapped. -->
+<div class="contact-sheet" id="contactSheet" role="dialog" aria-label="Contact Jaiden Ortiz" aria-hidden="true">
+  <div class="contact-sheet-head">
+    <div><p class="contact-kicker">CASTING / BOOKINGS</p><h2>Get in touch.</h2></div>
+    <button type="button" class="contact-close" id="contactClose" aria-label="Close contact details">×</button>
+  </div>
+  <p class="contact-description">Tap a contact option to call, email, or open Instagram.</p>
+  <div class="contact-list">
+    <a href="mailto:contact@jaidenortiz.com"><span><strong>EMAIL</strong><span class="value">contact@jaidenortiz.com</span></span><span class="contact-link-arrow" aria-hidden="true">↗</span></a>
+    <a href="tel:+17186077079"><span><strong>PHONE</strong><span class="value">(718) 607-7079</span></span><span class="contact-link-arrow" aria-hidden="true">↗</span></a>
+    <a href="https://www.instagram.com/jaidenn_n/" target="_blank" rel="noopener noreferrer"><span><strong>INSTAGRAM</strong><span class="value">@jaidenn_n</span></span><span class="contact-link-arrow" aria-hidden="true">↗</span></a>
+  </div>
+  <div class="contact-footer"><span>JAIDEN ORTIZ / MODEL</span><a href="/contact/">CONTACT PAGE ↗</a></div>
+</div>
 <section id="experience" aria-label="Jaiden Ortiz comp card experience">
   <div class="chrome">
     <div class="topbar">
       <div class="jo">JO</div>
       <div class="mode">COMP CARD / CASTING</div>
-      <div style="display:flex;gap:14px;align-items:center"><button id="replayCard" class="replay-card">PLAY COMP CARD</button><button id="cornerPortfolio" class="corner-portfolio">PORTFOLIO ↗</button></div>
+      <div class="topbar-actions"><button type="button" class="contact-trigger" data-contact-open aria-controls="contactSheet" aria-expanded="false">CONTACT ↗</button><button id="replayCard" class="replay-card" aria-label="Replay comp card">PLAY COMP CARD</button><button id="cornerPortfolio" class="corner-portfolio">PORTFOLIO ↗</button></div>
     </div>
     <div class="edge-hint left">‹</div>
     <div class="edge-hint right">›</div>
@@ -256,6 +303,7 @@ radial-gradient(circle at 50% 38%,#1b1b1b 0,#101010 43%,#080808 74%);touch-actio
     <h1 class="portfolio-title">Portfolio.</h1>
     <div class="portfolio-meta">
       <span class="portfolio-count">12 SELECTS</span>
+      <button type="button" class="portfolio-contact" data-contact-open aria-controls="contactSheet" aria-expanded="false">CONTACT ↗</button>
       <button class="back-card" id="backCard">← COMP CARD</button>
     </div>
   </div>
@@ -267,8 +315,9 @@ radial-gradient(circle at 50% 38%,#1b1b1b 0,#101010 43%,#080808 74%);touch-actio
     <div class="portfolio-foot-left">Selected work.</div>
     <div class="portfolio-foot-links">
       <a href="/about/#mickey">MOTHER AGENT / MICKEY FREEMAN ↗</a>
-      <a href="mailto:contact@jaidenortiz.com">BOOKINGS / INQUIRIES ↗</a>
-      <a href="https://www.instagram.com/jaidenn_n/" target="_blank" rel="noopener">@JAIDENN_N ↗</a>
+      <a href="mailto:contact@jaidenortiz.com">EMAIL / BOOKINGS ↗</a>
+      <a href="tel:+17186077079">CALL / (718) 607-7079 ↗</a>
+      <a href="https://www.instagram.com/jaidenn_n/" target="_blank" rel="noopener noreferrer">INSTAGRAM / @JAIDENN_N ↗</a>
     </div>
   </div>
 </section>
@@ -299,6 +348,29 @@ const cornerPortfolio=document.getElementById('cornerPortfolio');
 const replayCard=document.getElementById('replayCard');
 const agentCredit=document.getElementById('agentCredit');
 const agentPanel=document.getElementById('agentPanel');
+
+const contactSheet=document.getElementById('contactSheet');
+const contactOpeners=[...document.querySelectorAll('[data-contact-open]')];
+const contactClose=document.getElementById('contactClose');
+function setContactOpen(open){
+  contactSheet.classList.toggle('open',open);
+  contactSheet.setAttribute('aria-hidden',String(!open));
+  contactOpeners.forEach(b=>b.setAttribute('aria-expanded',String(open)));
+  if(open){
+    agentPanel.classList.remove('show');
+    agentPanel.setAttribute('aria-hidden','true');
+    agentCredit.setAttribute('aria-expanded','false');
+  }
+}
+contactOpeners.forEach(button=>button.addEventListener('click',()=>setContactOpen(!contactSheet.classList.contains('open'))));
+contactClose.addEventListener('click',()=>setContactOpen(false));
+document.addEventListener('pointerdown',e=>{
+  if(contactSheet.classList.contains('open')&&!e.target.closest('#contactSheet')&&!e.target.closest('[data-contact-open]'))setContactOpen(false);
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&contactSheet.classList.contains('open')){setContactOpen(false);contactOpeners[0].focus();}
+});
+
 const params=new URLSearchParams(location.search);
 const nfcEntry=params.get('entry')==='tap' || location.hash==='#full';
 let index=0, promptTimer=null, introTimer=null;
@@ -312,6 +384,7 @@ if(nfcEntry){ intro.classList.add('done'); }
 else { introTimer=setTimeout(hideIntro,1050); }
 
 function showSlide(next){
+  setContactOpen(false);
   if(next<0) next=0;
   if(next>2){ openPortfolio(); return; }
   clearTimeout(promptTimer);
@@ -346,6 +419,7 @@ function showSlide(next){
 }
 
 function openPortfolio(){
+  setContactOpen(false);
   clearTimeout(promptTimer);
   experience.style.display='none';
   portfolio.classList.add('open');
@@ -353,6 +427,7 @@ function openPortfolio(){
   window.scrollTo(0,0);
 }
 function backToCard(){
+  setContactOpen(false);
   portfolio.classList.remove('open');
   experience.style.display='block';
   document.body.style.overflow='hidden';
