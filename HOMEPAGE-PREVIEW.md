@@ -13,12 +13,19 @@ preview, because its old template would overwrite the maintained `index.html`.
 
 ## Image provenance
 
-The portrait uses uploaded `P1099973(3).jpeg`, 1199 × 1536. A segmentation and
-matting process created transparency only. The PNG crops original coordinates
-(370,108)–(829,1498), yielding 459 × 1390. Every RGB pixel in that crop is identical
-to the decoded original; there is no face generation, body reshaping, color editing,
-sharpening, or resampling. The hair transparency is refined; clothing uses the
-smooth segmentation edge. A CSS ground shadow is separate from the photo.
+The portrait starts from uploaded `P1099973(3).jpeg`, 1199 × 1536, cropped to
+original coordinates (370,108)–(829,1498), yielding 459 × 1390. Following explicit
+permission, the outer hair was generated using the built-in Image Generation tool.
+The final composite restores the original face, expression, skin texture, neck,
+clothing and body; it does not use the generated face or body. Pixel checks
+confirmed the facial interior and body remain identical to the original cutout.
+Minor transparency cleanup removes backdrop residue beside the neck. Hair alone
+uses generated color/texture and transparency. The original photograph is retained.
+
+Generation brief: preserve the exact pose, scale and hairstyle; rebuild natural
+curl tips and flyaways, remove halos and angular cutout edges, use true transparency,
+and protect facial identity. Face and clothing were restored by compositing after
+generation. No generated website mockups or slideshow photographs are used.
 
 Slideshow originals are copied without re-encoding:
 
@@ -62,3 +69,8 @@ The hair perimeter now uses a higher-resolution portrait segmentation mask to
 remove the gray fringe and stair-step edges. Only hair transparency changed;
 all RGB pixels, face transparency, and the mask below the hair are identical to
 the first preview. Layout, slideshow, and all other files are unchanged.
+
+## Generated hair composite
+
+Supersedes the mask-only hair refinement above. Only the center portrait asset
+changed. The live site remains untouched; browser visual QA is still outstanding.
