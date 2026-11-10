@@ -58,6 +58,7 @@ html{scroll-behavior:smooth}body{overflow-x:hidden;overflow-y:auto}.home-portfol
 .quick-contact:hover{background:#fff}
 .quick-contact:focus-visible{outline:2px solid #fff;outline-offset:3px}
 @media(max-width:700px){.quick-contact{padding:12px 14px;font-size:9px}}
+.portfolio-filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 25px}.portfolio-filters button{background:transparent;border:1px solid #444;color:#c8c2ba;padding:11px 13px;font-size:9px;letter-spacing:.1em;cursor:pointer}.portfolio-filters button.active,.portfolio-filters button:hover{background:#eee9e0;color:#111;border-color:#eee9e0}.project-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:30px}.project-notes article{border-top:1px solid #666;padding:16px 4px 12px}.project-notes span{font-size:9px;letter-spacing:.16em;color:#a49d93}.project-notes h3{font:normal 29px Caslon,Georgia,serif;margin:12px 0}.project-notes p{font-size:12px;line-height:1.6;color:#aaa49d;max-width:38ch}.project-notes article[hidden]{display:none}@media(max-width:700px){.project-notes{grid-template-columns:1fr}.portfolio-filters button{font-size:8px;padding:9px}}
 </style>
 </head>
 <body>
@@ -71,12 +72,12 @@ html{scroll-behavior:smooth}body{overflow-x:hidden;overflow-y:auto}.home-portfol
   <div class="portfolio-head">
     <h2 class="portfolio-title">Portfolio.</h2>
     <div class="portfolio-meta">
-      <span class="portfolio-count">12 SELECTS</span>
+      <span class="portfolio-count">12 SELECTS · 3 PROJECT NOTES</span>
       <a class="back-card" href="/casting/">COMP CARD ↗</a>
     </div>
   </div>
 
-  <div class="gallery">
+  <div class="portfolio-filters" role="group" aria-label="Filter portfolio"><button class="active" data-filter="all">ALL WORK</button><button data-filter="runway">RUNWAY</button><button data-filter="editorial">EDITORIAL</button><button data-filter="commercial">COMMERCIAL / LIFESTYLE</button><button data-filter="digitals">DIGITALS</button><button data-filter="suiting">SUITING</button></div><div class="project-notes"><article data-category="commercial"><span>COMMERCIAL / LIFESTYLE</span><h3>PSD Underwear</h3><p>Studio lifestyle and apparel imagery featuring denim, layered basics, and PSD underwear. Seven original photographs selected for this project.</p></article><article data-category="editorial suiting"><span>EDITORIAL / SUITING</span><h3>Contemporary Menswear</h3><p>Expressive tailoring, layered outerwear, and statement accessories photographed in a wardrobe studio. Designer credit pending.</p></article><article data-category="editorial"><span>EDITORIAL</span><h3>Portrait Studies</h3><p>Low-key portraiture, directional lighting, and contemporary fashion styling.</p></article></div><div class="gallery">
     <button data-gallery-index="0" aria-label="Open portfolio image 1"><img loading="lazy" src="/casting/assets/portfolio-01.jpg" alt="Jaiden Ortiz portfolio image 1"></button><button data-gallery-index="1" aria-label="Open portfolio image 2"><img loading="lazy" src="/casting/assets/portfolio-08.jpg" alt="Jaiden Ortiz portfolio image 2"></button><button data-gallery-index="2" aria-label="Open portfolio image 3"><img loading="lazy" src="/casting/assets/portfolio-09.jpg" alt="Jaiden Ortiz portfolio image 3"></button><button data-gallery-index="3" aria-label="Open portfolio image 4"><img loading="lazy" src="/casting/assets/portfolio-13.jpg" alt="Jaiden Ortiz portfolio image 4"></button><button data-gallery-index="4" aria-label="Open portfolio image 5"><img loading="lazy" src="/casting/assets/portfolio-03.jpg" alt="Jaiden Ortiz portfolio image 5"></button><button data-gallery-index="5" aria-label="Open portfolio image 6"><img loading="lazy" src="/casting/assets/portfolio-04.jpg" alt="Jaiden Ortiz portfolio image 6"></button><button data-gallery-index="6" aria-label="Open portfolio image 7"><img loading="lazy" src="/casting/assets/portfolio-12.jpg" alt="Jaiden Ortiz portfolio image 7"></button><button data-gallery-index="7" aria-label="Open portfolio image 8"><img loading="lazy" src="/casting/assets/portfolio-11.jpg" alt="Jaiden Ortiz portfolio image 8"></button><button data-gallery-index="8" aria-label="Open portfolio image 9"><img loading="lazy" src="/casting/assets/portfolio-02.jpg" alt="Jaiden Ortiz portfolio image 9"></button><button data-gallery-index="9" aria-label="Open portfolio image 10"><img loading="lazy" src="/casting/assets/portfolio-05.jpg" alt="Jaiden Ortiz portfolio image 10"></button><button data-gallery-index="10" aria-label="Open portfolio image 11"><img loading="lazy" src="/casting/assets/portfolio-07.jpg" alt="Jaiden Ortiz portfolio image 11"></button><button data-gallery-index="11" aria-label="Open portfolio image 12"><img loading="lazy" src="/casting/assets/portfolio-06.jpg" alt="Jaiden Ortiz portfolio image 12"></button>
   </div>
   <div class="portfolio-foot">
@@ -97,6 +98,7 @@ html{scroll-behavior:smooth}body{overflow-x:hidden;overflow-y:auto}.home-portfol
   <div class="lb-count" id="lbCount"></div>
 </div>
 <script>
+document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{const selected=button.dataset.filter;document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b===button));document.querySelectorAll('.project-notes article').forEach(card=>{card.hidden=selected!=='all'&&!card.dataset.category.split(' ').includes(selected)});document.querySelector('.gallery').hidden=selected!=='all';document.querySelector('.portfolio-count').textContent=selected==='all'?'12 SELECTS · 3 PROJECT NOTES':'PROJECTS / '+selected.toUpperCase();}));
 const galleryFiles=[...document.querySelectorAll('[data-gallery-index] img')].map(i=>i.src);
 const lightbox=document.getElementById('lightbox');
 const lbImg=document.getElementById('lbImg');
