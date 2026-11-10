@@ -82,30 +82,6 @@
     ]
   },
   {
-    "id": "portrait-studies",
-    "title": "Portrait Studies",
-    "category": "Editorial",
-    "categories": [
-      "editorial"
-    ],
-    "tags": [
-      "Portraiture",
-      "Fashion",
-      "Creative"
-    ],
-    "description": "An editorial portrait series exploring individuality, expression, contrast, and visual storytelling through fashion photography.",
-    "images": [
-      {
-        "src": "/media/portfolio/portrait-studies/photo-13.jpg",
-        "alt": "Jaiden Ortiz \u2014 low-key portrait in black shirt and tie"
-      },
-      {
-        "src": "/media/portfolio/portrait-studies/photo-14.jpg",
-        "alt": "Jaiden Ortiz \u2014 low-key portrait in an open black jacket"
-      }
-    ]
-  },
-  {
     "id": "runway",
     "title": "On the Runway",
     "category": "Runway / Suiting",
@@ -165,6 +141,14 @@
       {
         "src": "/casting/assets/portfolio-13.jpg",
         "alt": "Jaiden Ortiz \u2014 full-length monochrome editorial"
+      },
+      {
+        "src": "/media/portfolio/portrait-studies/photo-13.jpg",
+        "alt": "Jaiden Ortiz \u2014 low-key portrait in black shirt and tie"
+      },
+      {
+        "src": "/media/portfolio/portrait-studies/photo-14.jpg",
+        "alt": "Jaiden Ortiz \u2014 low-key portrait in an open black jacket"
       }
     ]
   },
