@@ -21,13 +21,18 @@
     index = (next + images.length) % images.length;
     image.src = images[index].src;
     image.alt = images[index].alt;
+    const project = images[index].closest('.portfolio-project');
+    document.getElementById('viewer-title').textContent = project.querySelector('h3').textContent;
+    document.getElementById('viewer-category').textContent = project.querySelector('.project-category').textContent + ' / ' + project.querySelector('.project-tags').textContent;
+    document.getElementById('viewer-description').textContent = project.querySelector('.project-description').textContent;
     document.getElementById('viewer-count').textContent = `${index + 1} / ${images.length}`;
   }
   projects.forEach(project => project.querySelectorAll('[data-image]').forEach(button => button.addEventListener('click', () => {
-    images = [...project.querySelectorAll('.project-gallery img')];
+    images = projects.filter(p => !p.hidden).flatMap(p => [...p.querySelectorAll('.project-gallery img')]).sort((a,b) => Number(a.parentElement.style.getPropertyValue('--tile-order')) - Number(b.parentElement.style.getPropertyValue('--tile-order')));
     opener = button;
     document.getElementById('viewer-title').textContent = project.querySelector('h3').textContent;
-    show(Number(button.dataset.image));
+    dialog.querySelector('details').open = false;
+    show(images.indexOf(button.querySelector('img')));
     dialog.showModal();
     dialog.querySelector('.viewer-close').focus();
   })));
