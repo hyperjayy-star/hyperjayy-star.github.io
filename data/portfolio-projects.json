@@ -1,0 +1,203 @@
+[
+  {
+    "id": "psd-underwear",
+    "title": "PSD Underwear",
+    "category": "Commercial / Lifestyle",
+    "categories": [
+      "commercial"
+    ],
+    "tags": [
+      "Official PSD work",
+      "Apparel",
+      "Underwear",
+      "Studio"
+    ],
+    "description": "Commercial lifestyle imagery featuring PSD Underwear, contemporary streetwear styling, relaxed silhouettes, and product-focused studio photography. A series exploring versatility, natural expression, and modern casualwear.",
+    "images": [
+      {
+        "src": "/media/portfolio/psd-underwear/photo-02.jpg",
+        "alt": "Jaiden Ortiz \u2014 full-length studio photograph in white tank, denim and black PSD underwear"
+      },
+      {
+        "src": "/media/portfolio/psd-underwear/photo-01.jpg",
+        "alt": "Jaiden Ortiz \u2014 full-length studio photograph in denim and red PSD underwear"
+      },
+      {
+        "src": "/media/portfolio/psd-underwear/photo-04.jpg",
+        "alt": "Jaiden Ortiz \u2014 black T-shirt and relaxed denim styling"
+      },
+      {
+        "src": "/media/portfolio/psd-underwear/photo-03.jpg",
+        "alt": "Jaiden Ortiz \u2014 rear view of red PSD underwear and denim"
+      },
+      {
+        "src": "/media/portfolio/psd-underwear/photo-05.jpg",
+        "alt": "Jaiden Ortiz \u2014 rear view of black PSD underwear and denim"
+      },
+      {
+        "src": "/media/portfolio/psd-underwear/photo-07.jpg",
+        "alt": "Jaiden Ortiz \u2014 white tank and relaxed black trousers"
+      },
+      {
+        "src": "/media/portfolio/psd-underwear/photo-06.jpg",
+        "alt": "Jaiden Ortiz \u2014 side pose in white tank and black trousers"
+      }
+    ]
+  },
+  {
+    "id": "contemporary-menswear",
+    "title": "Contemporary Menswear",
+    "category": "Editorial / Suiting",
+    "categories": [
+      "editorial",
+      "suiting"
+    ],
+    "tags": [
+      "Menswear",
+      "Tailoring",
+      "Fashion"
+    ],
+    "description": "An exploration of contemporary tailoring through layered outerwear, structured silhouettes, statement accessories, and expressive fashion styling. Classic menswear reinterpreted through a modern editorial perspective.",
+    "images": [
+      {
+        "src": "/media/portfolio/contemporary-menswear/photo-08.jpg",
+        "alt": "Jaiden Ortiz \u2014 white tailoring with a long camel coat"
+      },
+      {
+        "src": "/media/portfolio/contemporary-menswear/photo-09.jpg",
+        "alt": "Jaiden Ortiz \u2014 layered grey tailoring, statement coat and sunglasses"
+      },
+      {
+        "src": "/media/portfolio/contemporary-menswear/photo-12.jpg",
+        "alt": "Jaiden Ortiz \u2014 blue suit in a wardrobe studio"
+      },
+      {
+        "src": "/media/portfolio/contemporary-menswear/photo-10.jpg",
+        "alt": "Jaiden Ortiz \u2014 white tailoring and camel coat, alternate pose"
+      },
+      {
+        "src": "/media/portfolio/contemporary-menswear/photo-11.jpg",
+        "alt": "Jaiden Ortiz \u2014 grey tailoring and statement outerwear, alternate pose"
+      }
+    ]
+  },
+  {
+    "id": "portrait-studies",
+    "title": "Portrait Studies",
+    "category": "Editorial",
+    "categories": [
+      "editorial"
+    ],
+    "tags": [
+      "Portraiture",
+      "Fashion",
+      "Creative"
+    ],
+    "description": "An editorial portrait series exploring individuality, expression, contrast, and visual storytelling through fashion photography.",
+    "images": [
+      {
+        "src": "/media/portfolio/portrait-studies/photo-13.jpg",
+        "alt": "Jaiden Ortiz \u2014 low-key portrait in black shirt and tie"
+      },
+      {
+        "src": "/media/portfolio/portrait-studies/photo-14.jpg",
+        "alt": "Jaiden Ortiz \u2014 low-key portrait in an open black jacket"
+      }
+    ]
+  },
+  {
+    "id": "runway",
+    "title": "On the Runway",
+    "category": "Runway / Suiting",
+    "categories": [
+      "runway",
+      "suiting"
+    ],
+    "tags": [
+      "Menswear",
+      "Tailoring"
+    ],
+    "description": "Selected runway photographs in tailored menswear.",
+    "images": [
+      {
+        "src": "/casting/assets/portfolio-04.jpg",
+        "alt": "Jaiden Ortiz \u2014 walking the runway in a dark tailored suit"
+      },
+      {
+        "src": "/casting/assets/portfolio-12.jpg",
+        "alt": "Jaiden Ortiz \u2014 full-length runway walk"
+      },
+      {
+        "src": "/casting/assets/portfolio-11.jpg",
+        "alt": "Jaiden Ortiz \u2014 runway portrait in a dark suit"
+      },
+      {
+        "src": "/casting/assets/portfolio-03.jpg",
+        "alt": "Jaiden Ortiz \u2014 close-up from the runway series"
+      }
+    ]
+  },
+  {
+    "id": "editorial-selects",
+    "title": "Editorial Selects",
+    "category": "Editorial",
+    "categories": [
+      "editorial"
+    ],
+    "tags": [
+      "Fashion",
+      "Portraiture"
+    ],
+    "description": "Selected fashion portraits, from relaxed denim to structured monochrome styling.",
+    "images": [
+      {
+        "src": "/casting/assets/portfolio-01.jpg",
+        "alt": "Jaiden Ortiz \u2014 seated editorial portrait in a black tank and denim"
+      },
+      {
+        "src": "/casting/assets/portfolio-08.jpg",
+        "alt": "Jaiden Ortiz \u2014 full-length denim editorial"
+      },
+      {
+        "src": "/casting/assets/portfolio-09.jpg",
+        "alt": "Jaiden Ortiz \u2014 black jacket and tie editorial portrait"
+      },
+      {
+        "src": "/casting/assets/portfolio-13.jpg",
+        "alt": "Jaiden Ortiz \u2014 full-length monochrome editorial"
+      }
+    ]
+  },
+  {
+    "id": "digitals",
+    "title": "Digitals",
+    "category": "Digitals",
+    "categories": [
+      "digitals"
+    ],
+    "tags": [
+      "Front",
+      "Profile",
+      "Casting"
+    ],
+    "description": "Simple front and profile views for casting.",
+    "images": [
+      {
+        "src": "/casting/assets/portfolio-05.jpg",
+        "alt": "Jaiden Ortiz \u2014 front view in a white tank"
+      },
+      {
+        "src": "/casting/assets/portfolio-07.jpg",
+        "alt": "Jaiden Ortiz \u2014 profile view in a white tank"
+      },
+      {
+        "src": "/casting/assets/portfolio-06.jpg",
+        "alt": "Jaiden Ortiz \u2014 front view in a black T-shirt"
+      },
+      {
+        "src": "/casting/assets/portfolio-02.jpg",
+        "alt": "Jaiden Ortiz \u2014 shirtless front view"
+      }
+    ]
+  }
+]
