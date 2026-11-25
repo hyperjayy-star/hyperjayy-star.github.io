@@ -277,29 +277,7 @@ body.nfc-playing .instruction{color:#d8d0c5}
   </div>
 
   
-<button class="agent-credit" id="agentCredit" type="button" aria-expanded="false" aria-controls="agentPanel">
-  <span class="agent-thumb"><img src="https://cdn.prod.website-files.com/69023085534e47a9eb49d4e1/6a1a6784795b8c09daebda3f_67cfa8f1449a66d720d4d6b3_67ad4a8b2b3b6c313646e552_mickey-freeman%252520Large.avif" alt="Mickey Freeman"></span>
-  <span class="agent-copy">
-    <span class="agent-kicker">MOTHER AGENT</span>
-    <span class="agent-name">Mickey Freeman</span>
-    <span class="agent-role">THE ONLY AGENCY</span>
-  </span>
-  <span class="agent-toggle" aria-hidden="true">＋</span>
-</button>
-<div class="agent-panel" id="agentPanel" aria-hidden="true">
-  <div class="agent-panel-head">
-    <div class="agent-panel-photo"><img src="https://cdn.prod.website-files.com/69023085534e47a9eb49d4e1/6a1a6784795b8c09daebda3f_67cfa8f1449a66d720d4d6b3_67ad4a8b2b3b6c313646e552_mickey-freeman%252520Large.avif" alt="Mickey Freeman"></div>
-    <div><div class="eyebrow">MOTHER AGENT / DEVELOPMENT</div><h3>Mickey<br>Freeman.</h3><div class="agency-line">FASHION STYLIST · THE ONLY AGENCY</div></div>
-  </div>
-  <p>Philadelphia-born fashion stylist with celebrity, editorial and brand work. His clients include Peyton List, McKenna Grace, Aldis Hodge, Dylan Sprouse and Keke Palmer, with work featured in GQ, Vogue, Marie Claire, Grazia and L’Officiel.</p>
-  <div class="agent-links">
-    <a href="/about/#mickey">LEARN MORE ↗</a>
-    <a href="https://www.theonly.agency/artists/mickey-freeman" target="_blank" rel="noopener">THE ONLY AGENCY ↗</a>
-    <a href="https://www.instagram.com/mickeyboooom/" target="_blank" rel="noopener">INSTAGRAM ↗</a>
-  </div>
-</div>
-
-  <div class="deck" id="deck">
+<div class="deck" id="deck">
     <div class="slide active"><div class="card-shell"><img src="/casting/assets/comp-card-front.jpg?v=20261006-original" alt="Jaiden Ortiz comp card front"></div></div>
     <div class="slide"><div class="card-shell"><img src="/casting/assets/comp-card-back.jpg?v=20261006-original" alt="Jaiden Ortiz comp card back"></div></div>
     <div class="slide"><div class="card-shell"><img src="/casting/assets/comp-card-full.jpg?v=20261006-original" alt="Jaiden Ortiz full comp card"></div></div>
@@ -337,7 +315,6 @@ body.nfc-playing .instruction{color:#d8d0c5}
   <div class="portfolio-foot">
     <div class="portfolio-foot-left">Selected work.</div>
     <div class="portfolio-foot-links">
-      <a href="/about/#mickey">MOTHER AGENT / MICKEY FREEMAN ↗</a>
       <a href="mailto:contact@jaidenortiz.com">EMAIL / BOOKINGS ↗</a>
       <a href="tel:+17186077079">CALL / (718) 607-7079 ↗</a>
       <a href="https://www.instagram.com/jaidenn_n/" target="_blank" rel="noopener noreferrer">INSTAGRAM / @JAIDENN_N ↗</a>
@@ -369,8 +346,6 @@ const progressBar=document.getElementById('progressBar');
 const fullPrompt=document.getElementById('fullPrompt');
 const cornerPortfolio=document.getElementById('cornerPortfolio');
 const replayCard=document.getElementById('replayCard');
-const agentCredit=document.getElementById('agentCredit');
-const agentPanel=document.getElementById('agentPanel');
 
 const contactSheet=document.getElementById('contactSheet');
 const contactOpeners=[...document.querySelectorAll('[data-contact-open]')];
@@ -380,9 +355,6 @@ function setContactOpen(open){
   contactSheet.setAttribute('aria-hidden',String(!open));
   contactOpeners.forEach(b=>b.setAttribute('aria-expanded',String(open)));
   if(open){
-    agentPanel.classList.remove('show');
-    agentPanel.setAttribute('aria-hidden','true');
-    agentCredit.setAttribute('aria-expanded','false');
   }
 }
 contactOpeners.forEach(button=>button.addEventListener('click',()=>setContactOpen(!contactSheet.classList.contains('open'))));
@@ -492,10 +464,6 @@ function showSlide(next){
   fullPrompt.classList.remove('show');
   cornerPortfolio.classList.remove('show');
   replayCard.classList.remove('show');
-  agentCredit.classList.remove('show');
-  agentPanel.classList.remove('show');
-  agentPanel.setAttribute('aria-hidden','true');
-  agentCredit.setAttribute('aria-expanded','false');
 
   slides.forEach((s,i)=>{
     s.classList.remove('active','before');
@@ -512,7 +480,6 @@ function showSlide(next){
       fullPrompt.classList.add('show');
       cornerPortfolio.classList.add('show');
       if(nfcEntry) replayCard.classList.add('show');
-      agentCredit.classList.add('show');
     },650);
   } else {
     instruction.textContent='SWIPE OR TAP TO CONTINUE';
@@ -549,20 +516,7 @@ replayCard.addEventListener('click',()=>{
 });
 document.getElementById('tapPrev').addEventListener('click',()=>showSlide(index-1));
 document.getElementById('tapNext').addEventListener('click',()=>showSlide(index+1));
-agentCredit.addEventListener('click',e=>{
-  e.stopPropagation();
-  const open=!agentPanel.classList.contains('show');
-  agentPanel.classList.toggle('show',open);
-  agentPanel.setAttribute('aria-hidden',String(!open));
-  agentCredit.setAttribute('aria-expanded',String(open));
-});
-document.addEventListener('click',e=>{
-  if(agentPanel.classList.contains('show') && !e.target.closest('#agentPanel') && !e.target.closest('#agentCredit')){
-    agentPanel.classList.remove('show');
-    agentPanel.setAttribute('aria-hidden','true');
-    agentCredit.setAttribute('aria-expanded','false');
-  }
-});
+
 
 let sx=0,sy=0,st=0;
 experience.addEventListener('pointerdown',e=>{sx=e.clientX;sy=e.clientY;st=performance.now();},{passive:true});
